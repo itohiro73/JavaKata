@@ -11,26 +11,26 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileKataTestResource extends ExternalResource{
-    public static final String RESOURCE_DIR = "src/test/resources/io";
+    public static final String RESOURCE_DIR = "src/test/resources/ex1";
 
     public static final List<String> DIRS = Arrays.asList(
-            "src/test/resources/io",
-            "src/test/resources/io/dir1",
-            "src/test/resources/io/dirToCopy",
-            "src/test/resources/io/dirToRecursiveCopy",
-            "src/test/resources/io/dirToRecursiveCopy/dir1",
-            "src/test/resources/io/dirToRecursiveCopy/dir2",
-            "src/test/resources/io/dirToRename"
+            "src/test/resources/ex1",
+            "src/test/resources/ex1/dir1",
+            "src/test/resources/ex1/dirToCopy",
+            "src/test/resources/ex1/dirToRecursiveCopy",
+            "src/test/resources/ex1/dirToRecursiveCopy/dir1",
+            "src/test/resources/ex1/dirToRecursiveCopy/dir2",
+            "src/test/resources/ex1/dirToRename"
     );
 
     public static final List<String> FILES = Arrays.asList(
-            "src/test/resources/io/file1",
-            "src/test/resources/io/fileToCopy",
-            "src/test/resources/io/fileToMove",
-            "src/test/resources/io/fileToRead",
-            "src/test/resources/io/fileToRename",
-            "src/test/resources/io/dirToRecursiveCopy/file1",
-            "src/test/resources/io/dirToRecursiveCopy/dir1/file2"
+            "src/test/resources/ex1/file1",
+            "src/test/resources/ex1/fileToCopy",
+            "src/test/resources/ex1/fileToMove",
+            "src/test/resources/ex1/fileToRead",
+            "src/test/resources/ex1/fileToRename",
+            "src/test/resources/ex1/dirToRecursiveCopy/file1",
+            "src/test/resources/ex1/dirToRecursiveCopy/dir1/file2"
     );
     public static final String READ_FILE_CONTENTS = "Hello Java World.";
     public static final String COPY_FILE_CONTENTS = "Correct copy file.";
@@ -71,16 +71,16 @@ public class FileKataTestResource extends ExternalResource{
     }
 
     private void writeFileContents() throws IOException {
-        BufferedWriter writer = Files.newBufferedWriter(Paths.get("src/test/resources/io/fileToRead"));
+        BufferedWriter writer = Files.newBufferedWriter(Paths.get("src/test/resources/ex1/fileToRead"));
         writer.write(READ_FILE_CONTENTS);
         writer.close();
-        writer = Files.newBufferedWriter(Paths.get("src/test/resources/io/fileToCopy"));
+        writer = Files.newBufferedWriter(Paths.get("src/test/resources/ex1/fileToCopy"));
         writer.write(COPY_FILE_CONTENTS);
         writer.close();
-        writer = Files.newBufferedWriter(Paths.get("src/test/resources/io/fileToMove"));
+        writer = Files.newBufferedWriter(Paths.get("src/test/resources/ex1/fileToMove"));
         writer.write(MOVE_FILE_CONTENTS);
         writer.close();
-        writer = Files.newBufferedWriter(Paths.get("src/test/resources/io/fileToRename"));
+        writer = Files.newBufferedWriter(Paths.get("src/test/resources/ex1/fileToRename"));
         writer.write(RENAME_FILE_CONTENTS);
         writer.close();
 
@@ -99,7 +99,7 @@ public class FileKataTestResource extends ExternalResource{
                     clean(eachPath);
                 } catch (IOException e) {
                     throw new RuntimeException("Resources may not have been cleaned-up... " +
-                            "Manually delete files under \"src/test/resources/io\" and rerun", e);
+                            "Manually delete files under \"src/test/resources/ex1\" and rerun", e);
                 }
             });
             Files.delete(path);
