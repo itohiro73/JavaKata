@@ -47,21 +47,24 @@ public class Ex2DateTimeKata {
     @Test
     public void test2ZonedDateTimeInstantiation() {
         //todo: create a ZonedDateTime for 2015-08-12T07:56[Asia/Tokyo]
-        ZonedDateTime zonedDateTime20150812_07_56_Tokyo = null;
+        LocalDate localDate20150812 = LocalDate.of(2015, 8, 12);
+        LocalTime localTime0756 = LocalTime.of(7, 56);
+        ZoneId asiaTokyo = ZoneId.of("Asia/Tokyo");
+        ZonedDateTime zonedDateTime20150812_07_56_Tokyo = ZonedDateTime.of(localDate20150812, localTime0756, asiaTokyo);
 
         assertNotNull("Hint: Create ZonedDateTime instance for \"2015-08-12T07:56\" in \"Asia/Tokyo\" by using ZonedDateTime.of() method",
                 zonedDateTime20150812_07_56_Tokyo);
         assertThat(zonedDateTime20150812_07_56_Tokyo.toString(), is("2015-08-12T07:56+09:00[Asia/Tokyo]"));
 
         //todo: create a ZonedDateTime at the same instant as 2015-08-12T07:56[Asia/Tokyo] for zone "America/New_York"
-        ZonedDateTime zonedDateTime20150811_18_56_NewYork = null;
+        ZonedDateTime zonedDateTime20150811_18_56_NewYork = zonedDateTime20150812_07_56_Tokyo.withZoneSameInstant(ZoneId.of("America/New_York"));
 
         assertNotNull("Hint: Create ZonedDateTime instance for \"2015-08-11T18:56\" in \"America/New_York\" by using ZonedDateTime.withZoneSameInstant() method",
                 zonedDateTime20150811_18_56_NewYork);
         assertThat(zonedDateTime20150811_18_56_NewYork.toString(), is("2015-08-11T18:56-04:00[America/New_York]"));
 
         //todo: create a ZonedDateTime with the same local time "2015-08-12T07:56" for zone "America/New_York"
-        ZonedDateTime zonedDateTime20150812_07_56_NewYork = null;
+        ZonedDateTime zonedDateTime20150812_07_56_NewYork = zonedDateTime20150812_07_56_Tokyo.withZoneSameLocal(ZoneId.of("America/New_York"));
 
         assertNotNull("Hint: Create ZonedDateTime instance for \"2015-08-12T07:56\" in \"America/New_York\" by using ZonedDateTime.withZoneSameLocal() method",
                 zonedDateTime20150812_07_56_NewYork);
