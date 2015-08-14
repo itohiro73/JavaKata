@@ -36,6 +36,14 @@ public class Ex2DateTimeKata {
         assertThat(localDateTime20150812_07_56.toString(), is("2015-08-12T07:56"));
     }
 
+    /**
+     *  Create a ZonedDateTime instance for "2015-08-12T07:56+09:00[Asia/Tokyo]".
+     *  Create a ZonedDateTime instance for "2015-08-11T18:56-04:00[America/New_York]".
+     *  Create a ZonedDateTime instance for "2015-08-12T07:56-04:00[America/New_York]".
+     *  @see ZonedDateTime#of(LocalDate, LocalTime, ZoneId)
+     *  @see ZonedDateTime#withZoneSameInstant(ZoneId)
+     *  @see ZonedDateTime#withZoneSameLocal(ZoneId)
+     */
     @Test
     public void test2ZonedDateTimeInstantiation() {
         //todo: create a ZonedDateTime for 2015-08-12T07:56[Asia/Tokyo]
