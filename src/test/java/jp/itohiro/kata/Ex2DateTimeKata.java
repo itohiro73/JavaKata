@@ -2,9 +2,7 @@ package jp.itohiro.kata;
 
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -21,7 +19,7 @@ public class Ex2DateTimeKata {
      *  @see LocalDateTime#of(int year, int month, int dayOfMonth, int hour, int minute)
      */
     @Test
-    public void test1Instantiation() {
+    public void test1LocalDateTimeInstantiation() {
         LocalDate localDate20150812 = null; //todo: instantiate LocalDate for 2015-08-12 here
         assertNotNull("Hint: Create LocalDate instance for \"2015-08-12\" by using LocalDate.of() method",
                 localDate20150812);
@@ -33,8 +31,32 @@ public class Ex2DateTimeKata {
         assertThat(localTime07_56.toString(), is("07:56"));
 
         LocalDateTime localDateTime20150812_07_56 = null; //todo: instantiate LocalDateTime for 2015-08-12 here
-        assertNotNull("Hint: Create LocalDateTime instance for \"07:56\" by using LocalTime.of() method",
+        assertNotNull("Hint: Create LocalDateTime instance for \"2015-08-12T07:56\" by using LocalDateTime.of() method",
                 localDateTime20150812_07_56);
         assertThat(localDateTime20150812_07_56.toString(), is("2015-08-12T07:56"));
+    }
+
+    @Test
+    public void test2ZonedDateTimeInstantiation() {
+        //todo: create a ZonedDateTime for 2015-08-12T07:56[Asia/Tokyo]
+        ZonedDateTime zonedDateTime20150812_07_56_Tokyo = null;
+
+        assertNotNull("Hint: Create ZonedDateTime instance for \"2015-08-12T07:56\" in \"Asia/Tokyo\" by using ZonedDateTime.of() method",
+                zonedDateTime20150812_07_56_Tokyo);
+        assertThat(zonedDateTime20150812_07_56_Tokyo.toString(), is("2015-08-12T07:56+09:00[Asia/Tokyo]"));
+
+        //todo: create a ZonedDateTime at the same instant as 2015-08-12T07:56[Asia/Tokyo] for zone "America/New_York"
+        ZonedDateTime zonedDateTime20150811_18_56_NewYork = null;
+
+        assertNotNull("Hint: Create ZonedDateTime instance for \"2015-08-11T18:56\" in \"America/New_York\" by using ZonedDateTime.withZoneSameInstant() method",
+                zonedDateTime20150811_18_56_NewYork);
+        assertThat(zonedDateTime20150811_18_56_NewYork.toString(), is("2015-08-11T18:56-04:00[America/New_York]"));
+
+        //todo: create a ZonedDateTime with the same local time "2015-08-12T07:56" for zone "America/New_York"
+        ZonedDateTime zonedDateTime20150812_07_56_NewYork = null;
+
+        assertNotNull("Hint: Create ZonedDateTime instance for \"2015-08-12T07:56\" in \"America/New_York\" by using ZonedDateTime.withZoneSameLocal() method",
+                zonedDateTime20150812_07_56_NewYork);
+        assertThat(zonedDateTime20150812_07_56_NewYork.toString(), is("2015-08-12T07:56-04:00[America/New_York]"));
     }
 }
