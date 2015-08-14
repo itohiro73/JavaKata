@@ -9,8 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.IntFunction;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static jp.itohiro.kata.resource.FileKataTestResource.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -30,8 +34,8 @@ public class Ex1FileKata {
     @Test
     public void test1PathInstantiation(){
         Path pathToFile1 = new File("src/test/resources/ex1/file1").toPath();
-        Path pathToFile1FromFileSystem = FileSystems.getDefault().getPath("src/test/resources/ex1/file1"); //hint: create Path instance from FileSystems
-        Path pathToFile1FromPaths = Paths.get("src/test/resources/ex1/file1"); //hint: create Path instance from Paths
+        Path pathToFile1FromFileSystem = null; //hint: create Path instance from FileSystems
+        Path pathToFile1FromPaths = null; //hint: create Path instance from Paths
 
         assertThat("Hint: Create Path instance for \"src/test/resources/ex1/file1\" by using FileSystems",
                 pathToFile1FromFileSystem,
@@ -69,8 +73,12 @@ public class Ex1FileKata {
      */
     @Test
     public void test3RenameFile() throws Exception {
-        Path dist = new File("src/test/resources/ex1/fileRenamed").toPath();
-        Path src = new File("src/test/resources/ex1/fileToRename").toPath();
+        //todo: initialize dist and src
+        Path dist = null; // Path instance for "src/test/resources/ex1/fileRenamed"
+        Path src = null; // Path instance for "src/test/resources/ex1/fileToRename"
+
+        assertNotNull("Hint: Instantiate dist object by using one of the methods learned in test1", dist);
+        assertNotNull("Hint: Instantiate src object by using one of the methods learned in test1", src);
 
         //todo: write code to rename from src to dist
         Files.move(src, dist);
@@ -93,8 +101,12 @@ public class Ex1FileKata {
      */
     @Test
     public void test4MoveFile() throws Exception {
-        Path dist = new File("src/test/resources/ex1/dir1/fileMoved").toPath();
-        Path src = new File("src/test/resources/ex1/fileToMove").toPath();
+        //todo: initialize dist and src
+        Path dist = null; // Path instance for "src/test/resources/ex1/dir1/fileMoved"
+        Path src = null; // Path instance for "src/test/resources/ex1/fileToMove"
+
+        assertNotNull("Hint: Instantiate dist object by using one of the methods learned in test1", dist);
+        assertNotNull("Hint: Instantiate src object by using one of the methods learned in test1", src);
 
         //todo: write code to move src file to dist
         Files.move(src, dist);
@@ -117,7 +129,9 @@ public class Ex1FileKata {
      */
     @Test
     public void test5ReadFile() throws Exception {
-        Path src = new File("src/test/resources/ex1/fileToRead").toPath();
+        //todo: initialize src
+        Path src = null; // Path instance for "src/test/resources/ex1/fileToRead"
+        assertNotNull("Hint: Instantiate src object by using one of the methods learned in test1", src);
 
         //todo: write code to read all lines from src path into a list of strings
         List<String> allLines = Files.readAllLines(src);
@@ -135,6 +149,10 @@ public class Ex1FileKata {
     /**
      *  Create a list of absolute path strings under "src/test/resources/ex1".
      *  @see Files#walk(Path, FileVisitOption...)
+     *  @see Stream#map(Function)
+     *  @see Path#toString()
+     *  @see Stream#collect(Collector)
+     *  @see Collectors#toList()
      */
     @Test
     public void test6WalkFilesAndCollectAbsolutePaths() throws Exception {
@@ -144,6 +162,11 @@ public class Ex1FileKata {
         List<String> paths = Files.walk(src)
                 .map(Path::toString)
                 .collect(Collectors.toList());
+
+        Assert.assertNotNull(
+                "Hint: Leverage Files.walk(), Stream.map(), Path.toString(), " +
+                        "Stream.collect() and Collectors.toList() to transform",
+                paths);
 
         paths.forEach(System.out::println);
         // Hint: the print statement above should generate outputs below
@@ -170,6 +193,13 @@ public class Ex1FileKata {
     /**
      *  Create a list of relative path strings under "src/test/resources/ex1".
      *  @see Files#walk(Path, FileVisitOption...)
+     *  @see IntStream#range(int, int)
+     *  @see Path#getNameCount()
+     *  @see IntStream#mapToObj(IntFunction)
+     *  @see Path#getName(int)
+     *  @see Path#toString()
+     *  @see Stream#collect(Collector)
+     *  @see Collectors#joining(CharSequence)
      */
     @Test
     public void test7WalkFilesAndCollectRelativePaths() throws Exception {
@@ -181,6 +211,12 @@ public class Ex1FileKata {
                         .mapToObj(count -> path.getName(count).toString())
                         .collect(Collectors.joining("/")))
                 .collect(Collectors.toList());;
+
+        Assert.assertNotNull(
+                "Hint: Leverage Files.walk(), Intstream.range(), Path.getNameCount(), " +
+                        "Intstream.mapToObj(), Path.getName(), Path.toString(), " +
+                        "Stream.collect(), Collectors.joining() and Collectors.toList() to transform",
+                paths);
 
         paths.forEach(System.out::println);
         // Hint: the print statement above should generate outputs below
@@ -216,6 +252,7 @@ public class Ex1FileKata {
         final Path src = new File("src/test/resources/ex1/dirToRecursiveCopy").toPath();
 
         //todo: write code to recursively copy files from src to dist
+        //todo: there are various ways to achieve this. figure out the way to do this yourself!
         Files.walk(src).forEach(path -> {
             String relativePath = IntStream.range(src.getNameCount(), path.getNameCount())
                     .mapToObj(count -> path.getName(count).toString())
