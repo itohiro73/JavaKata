@@ -70,4 +70,31 @@ public class Ex2DateTimeKata {
                 zonedDateTime20150812_07_56_NewYork);
         assertThat(zonedDateTime20150812_07_56_NewYork.toString(), is("2015-08-12T07:56-04:00[America/New_York]"));
     }
+
+    /**
+     *  Create a ZonedDateTime instance at Asia/Tokyo for epoch milli second: 1441780196115 (2015-09-09T15:29:56.115+09:00[Asia/Tokyo]).
+     *  Create a ZonedDateTime instance at Asia/Tokyo for epoch second: 1441780196 (2015-09-09T15:29:56+09:00[Asia/Tokyo]).
+     *  @see Instant#ofEpochMilli(long)
+     *  @see Instant#ofEpochSecond(long)
+     *  @see Instant#atZone(ZoneId)
+     */
+    @Test
+    public void test3Instant() {
+        long epochMilliSecond = 1441780196115L;
+        long epochSecond = 1441780196;
+
+        //todo: create a ZonedDateTime at zone "America/New_York" for epoch milli second: 1441780196115
+        ZonedDateTime zonedDateTime20150909_15_29_56_115 = Instant.ofEpochMilli(epochMilliSecond).atZone(ZoneId.of("Asia/Tokyo"));
+
+        assertNotNull("Hint: Create ZonedDateTime at zone \"America/New_York\" for epoch milli second: 1441780196115 by using Instance.ofEpochMilli() and Instance.atZone() methods",
+                zonedDateTime20150909_15_29_56_115);
+        assertThat(zonedDateTime20150909_15_29_56_115.toString(), is("2015-09-09T15:29:56.115+09:00[Asia/Tokyo]"));
+
+        //todo: create a ZonedDateTime at zone "America/New_York" for epoch second: 1441780196
+        ZonedDateTime zonedDateTime20150909_15_29_56 = Instant.ofEpochSecond(epochSecond).atZone(ZoneId.of("Asia/Tokyo"));
+
+        assertNotNull("Hint: Create ZonedDateTime at zone \"America/New_York\" for epoch second: 1441780196 by using Instance.ofEpochSecond() and Instance.atZone() methods",
+                zonedDateTime20150909_15_29_56);
+        assertThat(zonedDateTime20150909_15_29_56.toString(), is("2015-09-09T15:29:56+09:00[Asia/Tokyo]"));
+    }
 }
