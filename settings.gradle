@@ -1,2 +1,3 @@
-rootProject.name = 'java-kata'
+rootProject.name = 'kata'
+include 'java', 'kotlin', 'scala'
 
