@@ -1,4 +1,4 @@
-package jp.itohiro.kata.resource;
+package jp.itohiro.kata.java.resource;
 
 import org.junit.rules.ExternalResource;
 

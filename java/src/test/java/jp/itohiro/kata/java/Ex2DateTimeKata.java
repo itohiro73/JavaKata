@@ -1,4 +1,4 @@
-package jp.itohiro.kata;
+package jp.itohiro.kata.java;
 
 import org.junit.Test;
 

@@ -1,12 +1,11 @@
-package jp.itohiro.kata;
+package jp.itohiro.kata.java;
 
-import jp.itohiro.kata.resource.FileKataTestResource;
+import jp.itohiro.java.kata.kata.resource.FileKataTestResource;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
 import java.util.function.Function;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static jp.itohiro.kata.resource.FileKataTestResource.*;
+import static jp.itohiro.java.kata.kata.resource.FileKataTestResource.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
